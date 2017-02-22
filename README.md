@@ -1,2 +1,2 @@
 # Water-Reporter
-CS 2340 Team Project to create a crowd-sourced Android app for water reporting
+CS 2340 Team Project to create an iOS app for crowd-sourced water reporting
