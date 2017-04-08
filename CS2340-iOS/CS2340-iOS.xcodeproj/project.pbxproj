@@ -19,6 +19,7 @@
 		FDD93E421E9966AD006C912A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E411E9966AD006C912A /* Constants.swift */; };
 		FDD93E451E996885006C912A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E441E996885006C912A /* ViewController.swift */; };
 		FDD93E471E99689E006C912A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E461E99689E006C912A /* LoginViewController.swift */; };
+		FDD93E491E99746E006C912A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E481E99746E006C912A /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		FDD93E411E9966AD006C912A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FDD93E441E996885006C912A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Controllers/ViewController.swift; sourceTree = "<group>"; };
 		FDD93E461E99689E006C912A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
+		FDD93E481E99746E006C912A /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = Controllers/RegistrationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			children = (
 				FDD93E441E996885006C912A /* ViewController.swift */,
 				FDD93E461E99689E006C912A /* LoginViewController.swift */,
+				FDD93E481E99746E006C912A /* RegistrationViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			files = (
 				FDD93E471E99689E006C912A /* LoginViewController.swift in Sources */,
 				FDD93E451E996885006C912A /* ViewController.swift in Sources */,
+				FDD93E491E99746E006C912A /* RegistrationViewController.swift in Sources */,
 				FDD93E3C1E9962A4006C912A /* FirebaseModels.swift in Sources */,
 				FDD93E3A1E99629C006C912A /* FirebaseService.swift in Sources */,
 				FDD93E261E9960CD006C912A /* AppDelegate.swift in Sources */,
