@@ -6,8 +6,15 @@
 //
 //
 
-import Foundation
+import UIKit
 
 struct GoogleConstants {
     static let mapsApiKey = ""
+}
+
+struct AppConstants {
+    
+    static var appDelegate: AppDelegate!
+    static var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
 }
