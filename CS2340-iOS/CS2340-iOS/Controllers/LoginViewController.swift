@@ -32,6 +32,14 @@ class LoginViewController: UIViewController {
             }
             if password.characters.count == 0 {
                 
+                return
+            }
+            
+            AuthManager.shared.loginStandard(username: username, password: password) {
+                (isSuccessful) -> Void in
+                if (isSuccessful) {
+                    self.performSegue(withIdentifier: "loginToMain", sender: nil)
+                }
             }
         }
     }
