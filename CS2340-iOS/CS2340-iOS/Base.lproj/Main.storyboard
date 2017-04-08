@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Map View Controller-->
         <scene sceneID="Raq-y5-rvJ">
             <objects>
-                <viewController id="bnM-2x-PMe" sceneMemberID="viewController">
+                <viewController id="bnM-2x-PMe" customClass="MapViewController" customModule="CS2340_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qpc-oA-Zjv"/>
                         <viewControllerLayoutGuide type="bottom" id="84e-QW-F7u"/>
@@ -21,13 +21,27 @@
                     <view key="view" contentMode="scaleToFill" id="oJd-Bw-b6f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lEH-8c-s9M">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lEH-8c-s9M" firstAttribute="leading" secondItem="oJd-Bw-b6f" secondAttribute="leading" id="Yqt-dD-ea5"/>
+                            <constraint firstAttribute="trailing" secondItem="lEH-8c-s9M" secondAttribute="trailing" id="oLz-LF-Cnm"/>
+                            <constraint firstItem="lEH-8c-s9M" firstAttribute="top" secondItem="qpc-oA-Zjv" secondAttribute="bottom" id="sGB-H3-FOJ"/>
+                            <constraint firstItem="lEH-8c-s9M" firstAttribute="bottom" secondItem="84e-QW-F7u" secondAttribute="top" id="t7d-zM-eOL"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="j7d-bk-8Na"/>
+                    <navigationItem key="navigationItem" id="mmx-LD-aAf"/>
+                    <connections>
+                        <outlet property="mapView" destination="lEH-8c-s9M" id="92w-f8-4pF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjF-TE-NxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-695" y="-322"/>
+            <point key="canvasLocation" x="244" y="-322.48875562218893"/>
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="8Cr-gy-3u0">
@@ -77,7 +91,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="GM6-ah-Qcb" kind="relationship" relationship="viewControllers" id="MPE-DG-HY2"/>
-                        <segue destination="bnM-2x-PMe" kind="relationship" relationship="viewControllers" id="8HS-wL-5GE"/>
+                        <segue destination="k0x-Jl-iUD" kind="relationship" relationship="viewControllers" id="8HS-wL-5GE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYR-bK-vLC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -392,7 +406,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMo-rp-Ej3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2600.8000000000002" y="-291.00449775112446"/>
+            <point key="canvasLocation" x="3540" y="-291.00449775112446"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="gtr-Fg-zND">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k0x-Jl-iUD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 2" id="j7d-bk-8Na"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pJu-bX-g0F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bnM-2x-PMe" kind="relationship" relationship="rootViewController" id="wdL-DO-03l"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SEg-6E-zoa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-695.20000000000005" y="-322.48875562218893"/>
         </scene>
     </scenes>
     <resources>

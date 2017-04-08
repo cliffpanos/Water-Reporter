@@ -22,14 +22,14 @@ class User : FIRDataObject {
 
 class Report : FIRDataObject {
 
-    public var dateTime : String = ""
+    public var dateTimeString : String = ""
     public var location: String = ""
     public var reportNumber: String = ""
     public var userId: String = ""
 
     
     override func toDictionary() -> Dictionary<String, Any> {
-        return self.dictionaryWithValues(forKeys: ["dateTime", "location", "reportNumber", "userId"])
+        return self.dictionaryWithValues(forKeys: ["dateTimeString", "location", "reportNumber", "userId"])
     }
 }
 
@@ -39,7 +39,7 @@ class PurityReport : Report {
     public var virusPPM: String = ""
     
     override func toDictionary() -> Dictionary<String, Any> {
-        return self.dictionaryWithValues(forKeys: ["condition", "containmentPPM", "dateTime", "location", "reportNumber", "userId", "virusPPM"])
+        return self.dictionaryWithValues(forKeys: ["condition", "containmentPPM", "dateTimeString", "location", "reportNumber", "userId", "virusPPM"])
     }
 }
 
@@ -48,7 +48,7 @@ class SourceReport : Report {
     public var condition : String = ""
     
     override func toDictionary() -> Dictionary<String, Any> {
-        return self.dictionaryWithValues(forKeys: ["dateTime", "location", "reportNumber", "userId", "type", "condition"])
+        return self.dictionaryWithValues(forKeys: ["dateTimeString", "location", "reportNumber", "userId", "type", "condition"])
     }
 }
 

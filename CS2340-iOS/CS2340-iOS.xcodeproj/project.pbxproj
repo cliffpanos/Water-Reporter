@@ -22,6 +22,10 @@
 		FDD93E491E99746E006C912A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E481E99746E006C912A /* RegistrationViewController.swift */; };
 		FDD93E4B1E997C8B006C912A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E4A1E997C8B006C912A /* EditProfileViewController.swift */; };
 		FDD93E4D1E998092006C912A /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E4C1E998092006C912A /* HomePageViewController.swift */; };
+		FDD93E4F1E998B90006C912A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E4E1E998B90006C912A /* MapViewController.swift */; };
+		FDD93E521E998C0A006C912A /* ReportMapPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD93E511E998C0A006C912A /* ReportMapPopup.xib */; };
+		FDD93E541E998C7A006C912A /* ReportMapPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E531E998C7A006C912A /* ReportMapPopup.swift */; };
+		FDD93E561E9991E8006C912A /* ReportAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E551E9991E8006C912A /* ReportAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +49,10 @@
 		FDD93E481E99746E006C912A /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = Controllers/RegistrationViewController.swift; sourceTree = "<group>"; };
 		FDD93E4A1E997C8B006C912A /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = Controllers/EditProfileViewController.swift; sourceTree = "<group>"; };
 		FDD93E4C1E998092006C912A /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomePageViewController.swift; path = Controllers/HomePageViewController.swift; sourceTree = "<group>"; };
+		FDD93E4E1E998B90006C912A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
+		FDD93E511E998C0A006C912A /* ReportMapPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ReportMapPopup.xib; path = Views/ReportMapPopup.xib; sourceTree = "<group>"; };
+		FDD93E531E998C7A006C912A /* ReportMapPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReportMapPopup.swift; path = Views/ReportMapPopup.swift; sourceTree = "<group>"; };
+		FDD93E551E9991E8006C912A /* ReportAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReportAnnotation.swift; path = Models/ReportAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +104,7 @@
 		FDD93E241E9960CD006C912A /* CS2340-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				FDD93E501E998BEB006C912A /* Views */,
 				FDD93E3F1E996643006C912A /* GoogleService-Info.plist */,
 				FDD93E3D1E9962AC006C912A /* AuthManager.swift */,
 				FDD93E381E9960E7006C912A /* Services */,
@@ -116,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				FDD93E3B1E9962A4006C912A /* FirebaseModels.swift */,
+				FDD93E551E9991E8006C912A /* ReportAnnotation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -136,8 +146,18 @@
 				FDD93E481E99746E006C912A /* RegistrationViewController.swift */,
 				FDD93E4A1E997C8B006C912A /* EditProfileViewController.swift */,
 				FDD93E4C1E998092006C912A /* HomePageViewController.swift */,
+				FDD93E4E1E998B90006C912A /* MapViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FDD93E501E998BEB006C912A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDD93E511E998C0A006C912A /* ReportMapPopup.xib */,
+				FDD93E531E998C7A006C912A /* ReportMapPopup.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +224,7 @@
 			files = (
 				FDD93E301E9960CD006C912A /* LaunchScreen.storyboard in Resources */,
 				FDD93E401E996643006C912A /* GoogleService-Info.plist in Resources */,
+				FDD93E521E998C0A006C912A /* ReportMapPopup.xib in Resources */,
 				FDD93E2D1E9960CD006C912A /* Assets.xcassets in Resources */,
 				FDD93E2B1E9960CD006C912A /* Main.storyboard in Resources */,
 			);
@@ -264,6 +285,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDD93E561E9991E8006C912A /* ReportAnnotation.swift in Sources */,
+				FDD93E541E998C7A006C912A /* ReportMapPopup.swift in Sources */,
 				FDD93E471E99689E006C912A /* LoginViewController.swift in Sources */,
 				FDD93E491E99746E006C912A /* RegistrationViewController.swift in Sources */,
 				FDD93E3C1E9962A4006C912A /* FirebaseModels.swift in Sources */,
@@ -271,6 +294,7 @@
 				FDD93E261E9960CD006C912A /* AppDelegate.swift in Sources */,
 				FDD93E3E1E9962AC006C912A /* AuthManager.swift in Sources */,
 				91A768C61E99733100DAF749 /* Designables.swift in Sources */,
+				FDD93E4F1E998B90006C912A /* MapViewController.swift in Sources */,
 				FDD93E4D1E998092006C912A /* HomePageViewController.swift in Sources */,
 				FDD93E421E9966AD006C912A /* Constants.swift in Sources */,
 				FDD93E4B1E997C8B006C912A /* EditProfileViewController.swift in Sources */,
