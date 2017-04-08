@@ -18,7 +18,6 @@
 		FDD93E3E1E9962AC006C912A /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E3D1E9962AC006C912A /* AuthManager.swift */; };
 		FDD93E401E996643006C912A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDD93E3F1E996643006C912A /* GoogleService-Info.plist */; };
 		FDD93E421E9966AD006C912A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E411E9966AD006C912A /* Constants.swift */; };
-		FDD93E451E996885006C912A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E441E996885006C912A /* RegisterViewController.swift */; };
 		FDD93E471E99689E006C912A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E461E99689E006C912A /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,6 @@
 		FDD93E3D1E9962AC006C912A /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		FDD93E3F1E996643006C912A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FDD93E411E9966AD006C912A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		FDD93E441E996885006C912A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Controllers/RegisterViewController.swift; sourceTree = "<group>"; };
 		FDD93E461E99689E006C912A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,7 +123,6 @@
 		FDD93E431E99684E006C912A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FDD93E441E996885006C912A /* RegisterViewController.swift */,
 				FDD93E461E99689E006C912A /* LoginViewController.swift */,
 				91A768C31E9970E700DAF749 /* MainViewController.swift */,
 			);
@@ -257,7 +254,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDD93E471E99689E006C912A /* LoginViewController.swift in Sources */,
-				FDD93E451E996885006C912A /* RegisterViewController.swift in Sources */,
 				FDD93E3C1E9962A4006C912A /* FirebaseModels.swift in Sources */,
 				FDD93E3A1E99629C006C912A /* FirebaseService.swift in Sources */,
 				FDD93E261E9960CD006C912A /* AppDelegate.swift in Sources */,
