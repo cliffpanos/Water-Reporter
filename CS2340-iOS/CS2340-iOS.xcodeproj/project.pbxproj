@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		996EFF10D89C7386AFF9BFF1 /* Pods_CS2340_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DD97673E45D10BC875DA40 /* Pods_CS2340_iOS.framework */; };
 		FDD93E261E9960CD006C912A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E251E9960CD006C912A /* AppDelegate.swift */; };
 		FDD93E2B1E9960CD006C912A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDD93E291E9960CD006C912A /* Main.storyboard */; };
 		FDD93E2D1E9960CD006C912A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD93E2C1E9960CD006C912A /* Assets.xcassets */; };
@@ -18,9 +19,11 @@
 		FDD93E421E9966AD006C912A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E411E9966AD006C912A /* Constants.swift */; };
 		FDD93E451E996885006C912A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E441E996885006C912A /* ViewController.swift */; };
 		FDD93E471E99689E006C912A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E461E99689E006C912A /* LoginViewController.swift */; };
+		FDD93E491E99746E006C912A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E481E99746E006C912A /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		62DD97673E45D10BC875DA40 /* Pods_CS2340_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS2340_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83EBAF6793954D9F10E0034E /* Pods-CS2340-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS2340-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CS2340-iOS/Pods-CS2340-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BD76673B7DBDD8F94D419224 /* Pods-CS2340-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS2340-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CS2340-iOS/Pods-CS2340-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		FDD93E221E9960CD006C912A /* CS2340-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CS2340-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +39,7 @@
 		FDD93E411E9966AD006C912A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FDD93E441E996885006C912A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Controllers/ViewController.swift; sourceTree = "<group>"; };
 		FDD93E461E99689E006C912A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
+		FDD93E481E99746E006C912A /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = Controllers/RegistrationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				996EFF10D89C7386AFF9BFF1 /* Pods_CS2340_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +66,7 @@
 		5AC06D68319C94B41ADECD77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				62DD97673E45D10BC875DA40 /* Pods_CS2340_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,6 +128,7 @@
 			children = (
 				FDD93E441E996885006C912A /* ViewController.swift */,
 				FDD93E461E99689E006C912A /* LoginViewController.swift */,
+				FDD93E481E99746E006C912A /* RegistrationViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +259,7 @@
 			files = (
 				FDD93E471E99689E006C912A /* LoginViewController.swift in Sources */,
 				FDD93E451E996885006C912A /* ViewController.swift in Sources */,
+				FDD93E491E99746E006C912A /* RegistrationViewController.swift in Sources */,
 				FDD93E3C1E9962A4006C912A /* FirebaseModels.swift in Sources */,
 				FDD93E3A1E99629C006C912A /* FirebaseService.swift in Sources */,
 				FDD93E261E9960CD006C912A /* AppDelegate.swift in Sources */,

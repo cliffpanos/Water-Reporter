@@ -32,6 +32,19 @@ class AuthManager {
         }
     }
     
+    func registerStandard(username: String, password: String, completion: ((_ isSuccessful: Bool) -> Void)!) {
+        FIRAuth.auth()?.createUser(withEmail: username, password: password) {
+            (user, error) in
+            if completion != nil {
+                if error != nil {
+                    completion(false)
+                } else {
+                    completion(true)
+                }
+            }
+        }
+    }
+    
 //    func loginGoogle(user: GIDGoogleUser!, completion: ((_ isSuccessful: Bool) -> Void)!) {
 //        guard let authentication = user.authentication else {
 //            return

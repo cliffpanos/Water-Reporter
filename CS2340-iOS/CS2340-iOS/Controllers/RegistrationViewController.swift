@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  RegistrationViewController.swift
 //  CS2340-iOS
 //
 //  Created by Daniel Becker on 4/8/17.
@@ -8,11 +8,12 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
-    
+class RegistrationViewController: UIViewController {
+
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
-
+    @IBOutlet weak var confirmPasswordText: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,7 +26,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func submit(_ sender: UIButton) {
-        if let username = usernameText?.text, let password = passwordText?.text {
+        if let username = usernameText?.text, let password = passwordText?.text, let confirmPassword = confirmPasswordText?.text {
             if username.characters.count == 0 {
                 
                 return
@@ -34,11 +35,21 @@ class LoginViewController: UIViewController {
                 
                 return
             }
+            if confirmPassword.characters.count == 0 {
+                
+                return
+            }
+            if confirmPassword != password {
+                
+                return
+            }
             
-            AuthManager.shared.loginStandard(username: username, password: password) {
+            AuthManager.shared.registerStandard(username: username, password: password) {
                 (isSuccessful) -> Void in
                 if (isSuccessful) {
-                    self.performSegue(withIdentifier: "loginToMain", sender: nil)
+                    print("Registration Successful")
+                } else {
+                    print("Registration Unsuccessful")
                 }
             }
         }
