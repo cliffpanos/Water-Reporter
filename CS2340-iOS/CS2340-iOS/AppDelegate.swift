@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
-        GMSServices.provideAPIKey(GoogleConstants.mapsApiKey)
         AppConstants.appDelegate = self
         self.tabBarController = window?.rootViewController as! UITabBarController
+        //GMSServices.provideAPIKey(GoogleConstants.mapsApiKey)
         
         return true
     }
