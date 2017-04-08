@@ -16,7 +16,7 @@ class User : FIRDataObject {
     public var userType : String = ""
     
     override func toDictionary() -> Dictionary<String, Any> {
-        return self.dictionaryWithValues(forKeys: ["address", "emailAddress", "userTYpe"])
+        return self.dictionaryWithValues(forKeys: ["address", "emailAddress", "userType"])
     }
 }
 

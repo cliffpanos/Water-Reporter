@@ -24,6 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.tabBarController = window?.rootViewController as! UITabBarController
         //GMSServices.provideAPIKey(GoogleConstants.mapsApiKey)
         
+        var initialViewController : UIViewController? = nil
+        if AuthManager.shared.current() == nil {
+            initialViewController = AppConstants.storyboard.instantiateViewController(withIdentifier: "loginViewController")
+        } else {
+            initialViewController = AppConstants.storyboard.instantiateViewController(withIdentifier: "main")
+        }
+        
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

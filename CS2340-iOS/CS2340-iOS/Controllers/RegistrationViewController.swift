@@ -47,11 +47,18 @@ class RegistrationViewController: UIViewController {
             AuthManager.shared.registerStandard(username: username, password: password) {
                 (isSuccessful) -> Void in
                 if (isSuccessful) {
-                    print("Registration Successful")
+                    self.performSegue(withIdentifier: "registrationToProfile", sender: nil)
                 } else {
                     print("Registration Unsuccessful")
                 }
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "registrationToProfile" {
+            let profileViewController = segue.destination as? EditProfileViewController
+            profileViewController?.fromRegistration = true
         }
     }
 

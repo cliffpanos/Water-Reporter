@@ -13,14 +13,13 @@ class MainViewController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        guard AuthManager.shared.current() != nil else {
-            return
-        }
-        
-        print("Will present loginViewController")
-        let loginController = AppConstants.storyboard.instantiateViewController(withIdentifier: "loginViewController")
-        self.present(loginController, animated: false, completion: nil)
-    
+//        guard AuthManager.shared.current() == nil else {
+//            return
+//        }
+//        
+//        print("Will present loginViewController")
+//        let loginController = AppConstants.storyboard.instantiateViewController(withIdentifier: "loginViewController")
+//        self.present(loginController, animated: false, completion: nil)
     }
     
 

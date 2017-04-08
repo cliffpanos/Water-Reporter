@@ -39,7 +39,8 @@ class LoginViewController: UIViewController {
             AuthManager.shared.loginStandard(username: username, password: password) {
                 (isSuccessful) -> Void in
                 if (isSuccessful) {
-                    self.performSegue(withIdentifier: "loginToMain", sender: nil)
+                    let mainViewController = AppConstants.storyboard.instantiateViewController(withIdentifier: "main")
+                    self.present(mainViewController, animated: true, completion: nil)
                 }
             }
         }

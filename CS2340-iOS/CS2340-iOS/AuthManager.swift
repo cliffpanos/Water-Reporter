@@ -45,6 +45,10 @@ class AuthManager {
         }
     }
     
+    func updateEmail(newEmail : String) {
+        FIRAuth.auth()?.currentUser?.updateEmail(newEmail, completion: nil)
+    }
+    
 //    func loginGoogle(user: GIDGoogleUser!, completion: ((_ isSuccessful: Bool) -> Void)!) {
 //        guard let authentication = user.authentication else {
 //            return
