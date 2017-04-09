@@ -9,10 +9,14 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet var gestureRecognizer: UILongPressGestureRecognizer!
+    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +25,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         let uid = AuthManager.shared.current()?.uid
         
-        mapView.delegate = self
+        locationManager.delegate = self
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        let hackGSU = ReportLocation(name: "HackGSU",lat: 33.7563920891773, long: -84.3890242522629, data: nil)
+        mapView.addAnnotation(hackGSU as MKAnnotation)
+        
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "CurrentLocation"), style: .done, target: self, action: #selector(zoomToLocation))
+        navigationItem.rightBarButtonItem = button
+        
+        gestureRecognizer.minimumPressDuration = 1
+        gestureRecognizer.addTarget(self, action: #selector(handle(gesture:)))
+        gestureRecognizer.delaysTouchesBegan = true        
         
         service.retrieveData(forIdentifier: uid!) {
             (result) -> Void in
@@ -46,9 +63,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func zoomToLocation() {
+        let userRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        mapView.setRegion(userRegion, animated: true)
     }
     
     func createMarker(report: Report) {
@@ -65,29 +82,60 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var view : MKAnnotationView
+        
         guard let annotation = annotation as? ReportLocation else {return nil}
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier) as? MKPinAnnotationView
-        {
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier) as? MKPinAnnotationView {
+            
             view = dequeuedView
-        }else { //make a new view
+        
+        } else { //make a new view
             view = ReportMapPopup(annotation: annotation, reuseIdentifier: annotation.identifier)
         }
         return view
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        let pin = view.annotation as! ReportLocation
+        
+        let detailController = AppConstants.storyboard.instantiateViewController(withIdentifier: "pinDetailViewController") as! PinDetailViewController
+        detailController.pin = pin
+        self.navigationController?.pushViewController(detailController, animated: true)
     }
-    */
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        mapView.showsUserLocation = (status == .authorizedAlways)
+    }
+    
+    var currentlyRecognizing = false
+    
+    func handle(gesture: UILongPressGestureRecognizer) {
+        
+        print(gestureRecognizer.state)
+        if gestureRecognizer.state == UIGestureRecognizerState.recognized {
+            currentlyRecognizing = false
+        }
+        
+        guard gestureRecognizer.state == UIGestureRecognizerState.began && !currentlyRecognizing else {
+            return
+        }
+        
+        print("handling gesture!!!!!!!!!!!!!!!!!!!")
+        currentlyRecognizing = true
+        let location = gestureRecognizer.location(in: mapView)
+        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
 
+        let pin = ReportLocation(location: coordinate)
+        mapView.addAnnotation(pin)
+    
+    }
+    
 }
 
+
 extension String {
+    
     func index(of string: String, options: CompareOptions = .literal) -> Index? {
         return range(of: string, options: options)?.lowerBound
     }
@@ -109,4 +157,5 @@ extension String {
         }
         return result
     }
+
 }

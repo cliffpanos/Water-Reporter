@@ -1,14 +1,16 @@
 //
-//  HomePageViewController.swift
+//  PinDetailViewController.swift
 //  CS2340-iOS
 //
-//  Created by Daniel Becker on 4/8/17.
+//  Created by Cliff Panos on 4/9/17.
 //
 //
 
 import UIKit
 
-class HomePageViewController: UIViewController {
+class PinDetailViewController: UIViewController {
+    
+    var pin: ReportLocation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,14 +18,6 @@ class HomePageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func signOutPressed(_ sender: Any) {
-        AuthManager.shared.logOut() {
-            (isSuccessful) -> Void in
-            if isSuccessful {
-                self.present(AppConstants.storyboard.instantiateViewController(withIdentifier: "loginViewController"), animated: true, completion: nil)
-            }
-        }
-    }
 
     /*
     // MARK: - Navigation

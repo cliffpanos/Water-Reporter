@@ -77,6 +77,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-
+    @IBAction func cancelPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }
