@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		91A768C41E9970E700DAF749 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A768C31E9970E700DAF749 /* MainViewController.swift */; };
 		91A768C61E99733100DAF749 /* Designables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A768C51E99733100DAF749 /* Designables.swift */; };
 		FDD93E261E9960CD006C912A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E251E9960CD006C912A /* AppDelegate.swift */; };
 		FDD93E2B1E9960CD006C912A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDD93E291E9960CD006C912A /* Main.storyboard */; };
@@ -31,7 +30,6 @@
 /* Begin PBXFileReference section */
 		62DD97673E45D10BC875DA40 /* Pods_CS2340_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS2340_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83EBAF6793954D9F10E0034E /* Pods-CS2340-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS2340-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CS2340-iOS/Pods-CS2340-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		91A768C31E9970E700DAF749 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		91A768C51E99733100DAF749 /* Designables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Designables.swift; sourceTree = "<group>"; };
 		BD76673B7DBDD8F94D419224 /* Pods-CS2340-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS2340-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CS2340-iOS/Pods-CS2340-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		FDD93E221E9960CD006C912A /* CS2340-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CS2340-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				FDD93E461E99689E006C912A /* LoginViewController.swift */,
-				91A768C31E9970E700DAF749 /* MainViewController.swift */,
 				FDD93E481E99746E006C912A /* RegistrationViewController.swift */,
 				FDD93E4A1E997C8B006C912A /* EditProfileViewController.swift */,
 				FDD93E4C1E998092006C912A /* HomePageViewController.swift */,
@@ -298,7 +295,6 @@
 				FDD93E4D1E998092006C912A /* HomePageViewController.swift in Sources */,
 				FDD93E421E9966AD006C912A /* Constants.swift in Sources */,
 				FDD93E4B1E997C8B006C912A /* EditProfileViewController.swift in Sources */,
-				91A768C41E9970E700DAF749 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

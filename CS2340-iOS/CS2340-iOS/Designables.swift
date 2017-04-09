@@ -14,7 +14,7 @@ class BorderedButton: UIButton {
     @IBInspectable var borderWidth: CGFloat = 1 {
         
         didSet {
-            self.layer.borderWidth = borderWidth
+            self.layer.borderWidth = self.borderWidth
             self.layer.masksToBounds = true
         }
     

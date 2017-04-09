@@ -8,21 +8,18 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+class RegistrationViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var confirmPasswordText: UITextField!
+    @IBOutlet weak var errorMessageLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        usernameText.becomeFirstResponder()
+        errorMessageLabel.text = ""
     }
     
     @IBAction func submit(_ sender: UIButton) {
@@ -53,6 +50,19 @@ class RegistrationViewController: UIViewController {
                 }
             }
         }
+        
+        func badLoginFeedback() {
+            self.errorMessageLabel.text = "Invalid Login"
+            let animation = CABasicAnimation(keyPath: "transform.translation.x")
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            animation.repeatCount = 3
+            animation.duration = 0.07
+            animation.autoreverses = true
+            animation.byValue = 7
+            self.usernameText.layer.add(animation, forKey: "position")
+            self.passwordText.layer.add(animation, forKey: "position")
+            self.confirmPasswordText.layer.add(animation, forKey: "position")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,14 +72,6 @@ class RegistrationViewController: UIViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

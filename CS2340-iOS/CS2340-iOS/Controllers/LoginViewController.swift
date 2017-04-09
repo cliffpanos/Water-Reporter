@@ -16,8 +16,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.errorMessageLabel.text = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,31 +28,39 @@ class LoginViewController: UIViewController {
         if let username = usernameText?.text, let password = passwordText?.text {
             if username.characters.count == 0 {
                 
+                badLoginFeedback()
                 return
             }
             if password.characters.count == 0 {
                 
+                badLoginFeedback()
                 return
             }
             
             AuthManager.shared.loginStandard(username: username, password: password) {
                 (isSuccessful) -> Void in
                 if (isSuccessful) {
-                    let mainViewController = AppConstants.storyboard.instantiateViewController(withIdentifier: "main")
-                    self.present(mainViewController, animated: true, completion: nil)
+                    self.errorMessageLabel.text = ""
+
+                    let mainController = AppConstants.storyboard.instantiateViewController(withIdentifier: "main")
+                    self.present(mainController, animated: true, completion: nil)
+                } else {
+                    self.badLoginFeedback()
                 }
             }
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func badLoginFeedback() {
+        self.errorMessageLabel.text = "Invalid Login"
+        let animation = CABasicAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.repeatCount = 3
+        animation.duration = 0.07
+        animation.autoreverses = true
+        animation.byValue = 7 //how much it moves
+        self.usernameText.layer.add(animation, forKey: "position")
+        self.passwordText.layer.add(animation, forKey: "position")
     }
-    */
 
 }
