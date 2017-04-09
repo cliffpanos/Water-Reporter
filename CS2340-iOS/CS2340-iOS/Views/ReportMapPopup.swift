@@ -9,6 +9,7 @@
 import MapKit
 
 class ReportMapPopup: MKAnnotationView {
+    
     @IBOutlet weak var location: UILabel!
     
     @IBOutlet weak var date: UILabel!

@@ -17,7 +17,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         usernameText.becomeFirstResponder()
         errorMessageLabel.text = ""
     }

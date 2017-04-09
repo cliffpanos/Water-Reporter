@@ -20,26 +20,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let service = FirebaseService(table: .users)
-        
-        let uid = AuthManager.shared.current()?.uid
         
         locationManager.delegate = self
         if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
             locationManager.requestWhenInUseAuthorization()
         }
         
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            self.mapView.showsUserLocation = true
+        }
+        
+        //TODO remove this
         let hackGSU = ReportLocation(name: "HackGSU",lat: 33.7563920891773, long: -84.3890242522629, data: nil)
         mapView.addAnnotation(hackGSU as MKAnnotation)
         
         let button = UIBarButtonItem(image: #imageLiteral(resourceName: "CurrentLocation"), style: .done, target: self, action: #selector(zoomToLocation))
         navigationItem.rightBarButtonItem = button
         
-        gestureRecognizer.minimumPressDuration = 1
+        gestureRecognizer.minimumPressDuration = 0.6
         gestureRecognizer.addTarget(self, action: #selector(handle(gesture:)))
         gestureRecognizer.delaysTouchesBegan = true        
         
+        let service = FirebaseService(table: .users)
+        
+        let uid = AuthManager.shared.current()?.uid
         service.retrieveData(forIdentifier: uid!) {
             (result) -> Void in
             if let user = result as? User {
@@ -64,7 +68,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
 
     func zoomToLocation() {
-        let userRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        let userRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
         mapView.setRegion(userRegion, animated: true)
     }
     
@@ -81,18 +85,32 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var view : MKAnnotationView
         
         guard let annotation = annotation as? ReportLocation else {return nil}
         
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier) as? MKPinAnnotationView {
+        let identifier = "reportLocation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
             
-            view = dequeuedView
+            let button = UIButton(type: (annotation.report != nil ? .detailDisclosure : .contactAdd))
+            annotationView!.rightCalloutAccessoryView = button
+
+        } else {
+            annotationView!.annotation = annotation
+        }
+
+        /*if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+            
+            annotationView = dequeuedView
         
         } else { //make a new view
-            view = ReportMapPopup(annotation: annotation, reuseIdentifier: annotation.identifier)
-        }
-        return view
+            annotationView = ReportMapPopup(annotation: annotation, reuseIdentifier: "identifier")
+        }*/
+        
+        return annotationView
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -121,14 +139,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return
         }
         
-        print("handling gesture!!!!!!!!!!!!!!!!!!!")
         currentlyRecognizing = true
         let location = gestureRecognizer.location(in: mapView)
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
 
         let pin = ReportLocation(location: coordinate)
         mapView.addAnnotation(pin)
-    
+
     }
     
 }
