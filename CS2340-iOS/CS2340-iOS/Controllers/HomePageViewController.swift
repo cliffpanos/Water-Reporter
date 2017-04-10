@@ -13,15 +13,9 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var reportTypeSelector: UISegmentedControl!
     
-    var allReports: [[Report]] = [[]]
+    var allReports: [[Report]] = [[SourceReport](), [PurityReport]()]
     //[[Source],[Purity]]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        allReports = [[Report]()]
-        allReports[0] = [SourceReport]()
-        allReports[1] = [PurityReport]()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,20 +25,27 @@ class HomePageViewController: UIViewController {
         service.retrieveData(forIdentifier: uid!) { result in
             
             if let user = result as? User {
-                service.table = FirebaseTable.sourceReports
-                service.retrieveAll() {
+                let sourceService = FirebaseService(table: .sourceReports)
+                sourceService.table = FirebaseTable.sourceReports
+                sourceService.retrieveAll() {
                     (reports) -> Void in
                     for report in reports {
                         self.allReports[0].append(report as! SourceReport)
                     }
+                    self.tableView.reloadData()
+
                 }
                 if user.userType != "User" {
-                    service.table = FirebaseTable.purityReports
-                    service.retrieveAll() {
+                    
+                    let purityService = FirebaseService(table: .purityReports)
+                    purityService.table = FirebaseTable.purityReports
+                    purityService.retrieveAll() {
                         (reports) -> Void in
                         for report in reports {
                             self.allReports[1].append(report as! PurityReport)
                         }
+                        self.tableView.reloadData()
+
                     }
                 }
             }
@@ -52,7 +53,9 @@ class HomePageViewController: UIViewController {
             
         }
         
-        
+    }
+    
+    @IBAction func segmentedControlChanged(_ sender: Any) {
         tableView.reloadData()
     }
     
@@ -64,6 +67,8 @@ class HomePageViewController: UIViewController {
             }
         }
     }
+    
+    
 
     /*
     // MARK: - Navigation
@@ -112,9 +117,11 @@ class ReportCell: UITableViewCell {
         case let purityReport as PurityReport:
             typeLabel.text = "Condition: \(purityReport.condition)"
             conditionLabel.text = "Impurity PPMs: \(purityReport.virusPPM) / \(purityReport.containmentPPM)"
+        
         case let sourceReport as SourceReport:
             typeLabel.text = "Water Type: \(sourceReport.type)"
             conditionLabel.text = "Condition: \(sourceReport.condition)"
+        
         default:
             break
         }

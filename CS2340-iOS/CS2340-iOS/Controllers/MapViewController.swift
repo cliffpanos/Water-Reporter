@@ -37,7 +37,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let button = UIBarButtonItem(image: #imageLiteral(resourceName: "CurrentLocation"), style: .done, target: self, action: #selector(zoomToLocation))
         navigationItem.rightBarButtonItem = button
         
-        gestureRecognizer.minimumPressDuration = 0.6
+        gestureRecognizer.minimumPressDuration = 0.75
         gestureRecognizer.addTarget(self, action: #selector(handle(gesture:)))
         gestureRecognizer.delaysTouchesBegan = true        
         
@@ -73,7 +73,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func createMarker(report: Report) {
-        let commaIndex = report.location.index(of: ",")!
+        return
+        guard let commaIndex = report.location.index(of: ",") else {
+            return
+        }
         let latDouble = (report.location.substring(to: commaIndex) as NSString).doubleValue
         let tempString = report.location.substring(from: commaIndex)
         let newIndex = tempString.index(tempString.startIndex, offsetBy: 1)
@@ -130,7 +133,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func handle(gesture: UILongPressGestureRecognizer) {
         
-        print(gestureRecognizer.state)
         if gestureRecognizer.state == UIGestureRecognizerState.recognized {
             currentlyRecognizing = false
         }

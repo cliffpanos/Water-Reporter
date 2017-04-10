@@ -11,6 +11,7 @@ import MapKit
 
 class ReportLocation: NSObject, MKAnnotation {
     
+    //for some reason the commented line of code below messed up things
     //var identifier = "identifier"
     var title: String?
     var coordinate: CLLocationCoordinate2D
@@ -23,7 +24,6 @@ class ReportLocation: NSObject, MKAnnotation {
     }
     
     init(location: CLLocationCoordinate2D) {
-        print("new annotation made")
         title = "New Report"
         coordinate = location
         report = nil
