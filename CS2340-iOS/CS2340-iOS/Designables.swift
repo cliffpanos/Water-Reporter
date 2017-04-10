@@ -1,6 +1,5 @@
 //
 //  Designables.swift
-//  CheckIn
 //
 //  Created by Cliff Panos on 4/4/17.
 //  Copyright © 2017 Clifford Panos. All rights reserved.
@@ -11,10 +10,10 @@ import UIKit
 @IBDesignable
 class BorderedButton: UIButton {
     
-    @IBInspectable var borderWidth: CGFloat = 1 {
+    @IBInspectable var borderWidth: CGFloat = CGFloat(0.0) {
         
         didSet {
-            self.layer.borderWidth = borderWidth
+            self.layer.borderWidth = CGFloat(self.borderWidth)
             self.layer.masksToBounds = true
         }
     
