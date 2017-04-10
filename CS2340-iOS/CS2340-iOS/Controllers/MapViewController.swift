@@ -34,7 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let hackGSU = ReportLocation(name: "HackGSU",lat: 33.7563920891773, long: -84.3890242522629, data: nil)
         mapView.addAnnotation(hackGSU as MKAnnotation)
         
-        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "CurrentLocation"), style: .done, target: self, action: #selector(zoomToLocation))
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "CurrentLocation"), style: .done, target: self, action: #selector(zoomToUserLocation))
         navigationItem.rightBarButtonItem = button
         
         gestureRecognizer.minimumPressDuration = 0.75
@@ -67,9 +67,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
 
-    func zoomToLocation() {
-        let userRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        mapView.setRegion(userRegion, animated: true)
+    func zoomToUserLocation() {
+        zoom(to: mapView.userLocation.coordinate)
+    }
+    
+    func zoom(to location: CLLocationCoordinate2D) {
+        let newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        mapView.setRegion(newRegion, animated: true)
     }
     
     func createMarker(report: Report) {
