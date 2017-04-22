@@ -26,16 +26,34 @@ class PinDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let reportType = report is SourceReport ? "Source" : "Purity"
-        waterReportTypeLabel.text = "Water \(reportType) Report"
+        let properties: Dictionary<String, Any>!
+        
+        if let report = report as? SourceReport {
+            
+            properties = report.toDictionary()
+            waterReportTypeLabel.text = "Water Source Report"
+            property2.text = "Water Type: \(properties["type"] as! String)"
+            property3.removeFromSuperview()
+        
+        } else {
+            
+            report = report as! PurityReport
+            properties = report.toDictionary()
+            waterReportTypeLabel.text = "Water Purity Report"
+            property2.text = "Contaminant PPM: \(properties["containmentPPM"] as! String)"
+            property3.text = "Virus PPM: \(properties["virusPPM"] as! String)"
+            
+        }
+        
+        property1.text = "Condition: \(properties!["condition"] as! String)"
         
     }
     
     @IBAction func viewInMapPressed(_ sender: Any) {
-        AppConstants.appDelegate.tabBarController.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 1
         
-        //TODO implement zoom to location
-        //mapViewCntroller.zoom(to: report.l)
+        MapViewController.reportRegionToView = self.report
+
     }
 
     @IBAction func deleteReportPressed(_ sender: Any) {

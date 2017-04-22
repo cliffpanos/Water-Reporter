@@ -86,8 +86,10 @@ extension String {
     func toBool() -> Bool? {
         switch self {
         case "True", "true", "yes", "1":
+            print("toBool function called")
             return true
         case "False", "false", "no", "0":
+            print("toBool function called")
             return false
         default:
             return nil

@@ -16,6 +16,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet var gestureRecognizer: UILongPressGestureRecognizer!
     
+    static var reportRegionToView: Report?
+    
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -66,6 +68,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let report = MapViewController.reportRegionToView {
+            
+            let location = (report.toDictionary())["location"] as! String
+            let locationComponents = location.components(separatedBy: ",")
+            
+            guard locationComponents.count > 1 else {
+                return
+            }
+            
+            let coord = CLLocationCoordinate2D(latitude: Double(locationComponents[0])!, longitude: Double(locationComponents[1])!)
+            
+            zoom(to: coord)
+            MapViewController.reportRegionToView = nil
+            
+        }
+    }
 
     func zoomToUserLocation() {
         zoom(to: mapView.userLocation.coordinate)
@@ -77,17 +98,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func createMarker(report: Report) {
-        return
-        guard let commaIndex = report.location.index(of: ",") else {
+        
+        let location = (report.toDictionary())["location"] as! String
+        let locationComponents = location.components(separatedBy: ",")
+        
+        guard locationComponents.count > 1 else {
             return
         }
-        let latDouble = (report.location.substring(to: commaIndex) as NSString).doubleValue
-        let tempString = report.location.substring(from: commaIndex)
-        let newIndex = tempString.index(tempString.startIndex, offsetBy: 1)
-        let longDouble = (tempString.substring(from: newIndex) as NSString).doubleValue
-        let lat = CLLocationDegrees(floatLiteral: latDouble)
-        let long = CLLocationDegrees(floatLiteral: longDouble)
-        let marker = ReportLocation(name: report.reportNumber, lat: lat, long: long, data: report)
+
+        let latDouble = (locationComponents[0] as NSString).doubleValue
+        let longDouble = (locationComponents[1] as NSString).doubleValue
+        
+        let marker = ReportLocation(name: report.reportNumber, lat: latDouble, long: longDouble, data: report)
         mapView.addAnnotation(marker)
     }
     
