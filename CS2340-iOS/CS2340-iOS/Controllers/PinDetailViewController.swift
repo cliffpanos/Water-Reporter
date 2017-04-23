@@ -75,6 +75,19 @@ class PinDetailViewController: UIViewController {
     }
 
     @IBAction func deleteReportPressed(_ sender: Any) {
+        let service = FirebaseService()
+        if report is PurityReport {
+            service.table = FirebaseTable.purityReports
+        } else if report is SourceReport {
+            service.table = FirebaseTable.sourceReports
+        }
+        service.deleteData(forIdentifier: report.identifier)
+        self.navigationController?.popViewController(animated: true)
+        let parent = navigationController?.topViewController
+        if let map = parent as? MapViewController {
+            map.mapView.removeAnnotation(pin)
+        }
+        parent?.view?.setNeedsDisplay()
     }
     
     func presentEditReportController() {

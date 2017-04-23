@@ -26,7 +26,7 @@ class Report : FIRDataObject {
     public var location: String = ""
     public var reportNumber: String = ""
     public var userId: String = ""
-
+    public var identifier: String = ""
     
     override func toDictionary() -> Dictionary<String, Any> {
         return self.dictionaryWithValues(forKeys: ["dateTimeString", "location", "reportNumber", "userId"])

@@ -49,16 +49,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         service.retrieveData(forIdentifier: uid!) {
             (result) -> Void in
             if let user = result as? User {
-                service.table = FirebaseTable.sourceReports
-                service.retrieveAll() {
+                let sourceService = FirebaseService(table: .sourceReports)
+                sourceService.retrieveAll() {
                     (reports) -> Void in
                     for report in reports {
                         self.createMarker(report: (report as? Report)!)
                     }
                 }
                 if user.userType != "User" {
-                    service.table = FirebaseTable.purityReports
-                    service.retrieveAll() {
+                    let purityService = FirebaseService(table: .purityReports)
+                    purityService.retrieveAll() {
                         (reports) -> Void in
                         for report in reports {
                             self.createMarker(report: (report as? Report)!)

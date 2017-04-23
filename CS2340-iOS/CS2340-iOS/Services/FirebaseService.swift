@@ -32,6 +32,14 @@ class FirebaseService : NSObject {
         }
     }
     
+    func deleteData(forIdentifier identifier: String) {
+        if let table = table {
+            self.ref.child(table.rawValue).child(identifier).removeValue()
+        } else {
+            print("Unable to remove data. Desired table is not set.")
+        }
+    }
+    
     func retrieveData(forIdentifier identifier: String, callback: @escaping ((FIRDataObject) -> Void)) {
         if let table = table {
             ref.child(table.rawValue).child(identifier).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -72,12 +80,15 @@ class FirebaseService : NSObject {
             return user
         case FirebaseTable.reports :
             let report = Report(snapshot: snapshot)
+            report.identifier = snapshot.key
             return report
         case FirebaseTable.purityReports :
             let purity = PurityReport(snapshot: snapshot)
+            purity.identifier = snapshot.key
             return purity
         case FirebaseTable.sourceReports :
             let source = SourceReport(snapshot: snapshot)
+            source.identifier = snapshot.key
             return source
         }
     }
