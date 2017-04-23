@@ -27,6 +27,7 @@ class Report : FIRDataObject {
     public var reportNumber: String = ""
     public var userId: String = ""
     public var identifier: String = ""
+    public var condition : String = ""
     
     override func toDictionary() -> Dictionary<String, Any> {
         return self.dictionaryWithValues(forKeys: ["dateTimeString", "location", "reportNumber", "userId"])
@@ -34,9 +35,8 @@ class Report : FIRDataObject {
 }
 
 class PurityReport : Report {
-    public var condition : String = ""
-    public var containmentPPM : String = ""
-    public var virusPPM: String = ""
+    public var containmentPPM : Double = 0.0
+    public var virusPPM: Double = 0.0
     
     override func toDictionary() -> Dictionary<String, Any> {
         return self.dictionaryWithValues(forKeys: ["condition", "containmentPPM", "dateTimeString", "location", "reportNumber", "userId", "virusPPM"])
@@ -45,7 +45,6 @@ class PurityReport : Report {
 
 class SourceReport : Report {
     public var type : String = ""
-    public var condition : String = ""
     
     override func toDictionary() -> Dictionary<String, Any> {
         return self.dictionaryWithValues(forKeys: ["dateTimeString", "location", "reportNumber", "userId", "type", "condition"])
@@ -62,13 +61,8 @@ class FIRDataObject: NSObject {
         for child in snapshot.children.allObjects as? [FIRDataSnapshot] ?? [] {
             let key = String(child.key.characters.filter { !" \n\t\r".characters.contains($0) })
             if responds(to: Selector(key)) {
-                if child.value is Bool {
-                    let boolValue = child.value as! Bool
-                    let boolString = boolValue.description
-                    setValue(boolString, forKey: key)
-                } else {
-                    setValue(child.value, forKey: key)
-                }
+                print(child.value)
+                setValue(child.value, forKey: key)
             }
         }
     }

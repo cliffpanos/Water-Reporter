@@ -38,26 +38,23 @@ class PinDetailViewController: UIViewController {
             return
         }
         
-        var properties = Dictionary<String, Any>()
 
         if let report = report as? SourceReport {
             
-            properties = report.toDictionary()
             waterReportTypeLabel.text = "Water Source Report"
-            property2.text = "Water Type: \(properties["type"] as! String)"
+            property2.text = "Water Type: \(report.type)"
             //property3.removeFromSuperview()
             property3.text = ""
         
         } else if let report = report as? PurityReport {
             
-            properties = report.toDictionary()
             waterReportTypeLabel.text = "Water Purity Report"
-            property2.text = "Contaminant PPM: \(properties["containmentPPM"] as! String)"
-            property3.text = "Virus PPM: \(properties["virusPPM"] as! String)"
+            property2.text = "Contaminant PPM: \(report.containmentPPM)"
+            property3.text = "Virus PPM: \(report.virusPPM)"
             
         }
         
-        property1.text = "Condition: \(properties["condition"] as! String)"
+        property1.text = "Condition: \(report.condition)"
         let location = (report.toDictionary())["location"] as! String
         let locationComponents = location.components(separatedBy: ",")
         
