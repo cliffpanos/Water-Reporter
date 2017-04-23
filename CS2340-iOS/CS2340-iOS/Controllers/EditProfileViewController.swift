@@ -9,9 +9,11 @@
 import UIKit
 
 class EditProfileViewController: UIViewController {
-    @IBOutlet weak var userTypeText: UITextField!
+
+    @IBOutlet weak var userTypeControl: UISegmentedControl!
     @IBOutlet weak var addressText: UITextField!
     @IBOutlet weak var emailAddressText: UITextField!
+    let userTypes = ["User", "Worker", "Manager", "Admin"]
     
     var fromRegistration : Bool = false
 
@@ -28,7 +30,8 @@ class EditProfileViewController: UIViewController {
                 (result) -> Void in
                 if let user = result as? User {
                     self.addressText.text = user.address
-                    self.userTypeText.text = user.userType
+                    let index = self.userTypes.index(of: user.userType)
+                    self.userTypeControl.selectedSegmentIndex = index ?? 0
                     self.emailAddressText.text = user.emailAddress
                 }
             }
@@ -46,7 +49,7 @@ class EditProfileViewController: UIViewController {
         let user = User()
         user.address = (addressText?.text!)!
         user.emailAddress = (emailAddressText?.text!)!
-        user.userType = (userTypeText?.text!)!
+        user.userType = userTypes[userTypeControl.selectedSegmentIndex]
         service.enterData(forIdentifier: userId!, data: user)
         
         AuthManager.shared.updateEmail(newEmail: emailAddressText.text!)

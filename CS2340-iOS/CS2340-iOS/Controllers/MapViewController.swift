@@ -80,9 +80,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 return
             }
             
-            let coord = CLLocationCoordinate2D(latitude: Double(locationComponents[0])!, longitude: Double(locationComponents[1])!)
-            
-            zoom(to: coord)
+            if let lat = Double(locationComponents[0]), let long = Double(locationComponents[1]) {
+                let coord = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                zoom(to: coord)
+            }
             MapViewController.reportRegionToView = nil
             
         }
@@ -94,7 +95,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func zoom(to location: CLLocationCoordinate2D) {
         let newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        mapView.setRegion(newRegion, animated: true)
+        do {
+            try mapView.setRegion(newRegion, animated: true)
+        } catch is NSException {
+            print("Invalid region")
+        }
+        
     }
     
     func createMarker(report: Report) {
@@ -146,9 +152,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let pin = view.annotation as! ReportLocation
         
-        let detailController = AppConstants.storyboard.instantiateViewController(withIdentifier: "pinDetailViewController") as! PinDetailViewController
-        detailController.pin = pin
-        self.navigationController?.pushViewController(detailController, animated: true)
+        var controller: UIViewController!
+        if let report = pin.report {
+            
+            controller = AppConstants.storyboard.instantiateViewController(withIdentifier: "pinDetailViewController")
+            (controller as! PinDetailViewController).pin = pin
+            (controller as! PinDetailViewController).report = report
+        } else {
+            controller = AppConstants.storyboard.instantiateViewController(withIdentifier: "editReportViewController")
+        }
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

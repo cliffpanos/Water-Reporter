@@ -26,18 +26,30 @@ class PinDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let properties: Dictionary<String, Any>!
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(presentEditReportController))
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        guard report != nil else {
+            presentEditReportController()
+            return
+        }
+        
+        var properties = Dictionary<String, Any>()
+
         if let report = report as? SourceReport {
             
             properties = report.toDictionary()
             waterReportTypeLabel.text = "Water Source Report"
             property2.text = "Water Type: \(properties["type"] as! String)"
-            property3.removeFromSuperview()
+            //property3.removeFromSuperview()
+            property3.text = ""
         
-        } else {
+        } else if let report = report as? PurityReport {
             
-            report = report as! PurityReport
             properties = report.toDictionary()
             waterReportTypeLabel.text = "Water Purity Report"
             property2.text = "Contaminant PPM: \(properties["containmentPPM"] as! String)"
@@ -45,18 +57,31 @@ class PinDetailViewController: UIViewController {
             
         }
         
-        property1.text = "Condition: \(properties!["condition"] as! String)"
+        property1.text = "Condition: \(properties["condition"] as! String)"
+        let location = (report.toDictionary())["location"] as! String
+        let locationComponents = location.components(separatedBy: ",")
         
+        if locationComponents.count > 1 {
+            latLabel.text = "Latitude: \(locationComponents[0])"
+            longLabel.text = "Longitude: \(locationComponents[1])"
+        }
+
     }
     
     @IBAction func viewInMapPressed(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 1
-        
         MapViewController.reportRegionToView = self.report
+        self.tabBarController?.selectedIndex = 1
 
     }
 
     @IBAction func deleteReportPressed(_ sender: Any) {
+    }
+    
+    func presentEditReportController() {
+        let editReportController = AppConstants.storyboard.instantiateViewController(withIdentifier: "editReportViewController") as! EditReportViewController
+        editReportController.report = report
+        editReportController.pin = pin
+        self.present(editReportController, animated: false, completion: nil)
     }
     
     

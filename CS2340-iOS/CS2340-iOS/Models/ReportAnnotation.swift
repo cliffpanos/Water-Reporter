@@ -18,7 +18,13 @@ class ReportLocation: NSObject, MKAnnotation {
     var report : Report?
     
     init(name: String, lat:CLLocationDegrees, long:CLLocationDegrees, data : Report?){
-        title = name
+        if data is SourceReport {
+            title = "Source Report"
+        } else if data is PurityReport {
+            title = "Purity Report"
+        } else {
+            title = "New Report"
+        }
         coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         report = data
     }

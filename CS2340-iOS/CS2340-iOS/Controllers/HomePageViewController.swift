@@ -85,7 +85,6 @@ class HomePageViewController: UIViewController {
 
     }
     
-
 }
 
 
