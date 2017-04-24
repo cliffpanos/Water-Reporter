@@ -13,12 +13,11 @@ class EditReportViewController: UIViewController {
     @IBOutlet weak var reportTypeControl: UISegmentedControl!
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var property1: UILabel!
-    @IBOutlet weak var property2: UILabel!
-    @IBOutlet weak var property3: UILabel!
     
     var pin: ReportLocation?
     var report: Report? //nil if creating a new Report
     
+    var propertiesTabBar : EditPropertiesViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +26,7 @@ class EditReportViewController: UIViewController {
             
             //Setup the view and pre-fill known information
             reportTypeControl.selectedSegmentIndex = (report is SourceReport ? 0 : 1)
+            reportTypeControl.isEnabled = false
             
         } else { //Band-aid fix to save views
             
@@ -39,7 +39,21 @@ class EditReportViewController: UIViewController {
         
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "embedTabBar" {
+            propertiesTabBar = segue.destination as? EditPropertiesViewController
+        }
+    }
 
+    @IBAction func toggleReportType(_ sender: Any) {
+        if (reportTypeControl.selectedSegmentIndex == 0) {
+            propertiesTabBar?.showSource()
+        } else {
+            propertiesTabBar?.showPurity()
+        }
+    }
+    
     @IBAction func cancelPressed(_ sender: Any) {
         exitViewController()
     }
