@@ -13,20 +13,32 @@ class EditReportViewController: UIViewController {
     @IBOutlet weak var reportTypeControl: UISegmentedControl!
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var property1: UILabel!
+    @IBOutlet weak var conditionControl: UISegmentedControl!
     
     var pin: ReportLocation?
     var report: Report? //nil if creating a new Report
     
     var propertiesTabBar : EditPropertiesViewController?
     
+    var conditionOptions = ["Potable", "Waste", "Clear", "Muddy"]
+    var typeOptions = ["Bottled", "Lake", "Well", "Spring", "Stream"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let report = report {
-            
-            //Setup the view and pre-fill known information
-            reportTypeControl.selectedSegmentIndex = (report is SourceReport ? 0 : 1)
             reportTypeControl.isEnabled = false
+            conditionControl.selectedSegmentIndex = conditionOptions.index(of: report.condition)!
+            //Setup the view and pre-fill known information
+            if let sourceReport = report as? SourceReport { 
+                propertiesTabBar?.editSource?.selectedIndex = typeOptions.index(of: sourceReport.type)!
+            } else if let purityReport = report as? PurityReport {
+                reportTypeControl.selectedSegmentIndex = 1
+                propertiesTabBar?.selectedIndex = 1
+                propertiesTabBar?.editPurity?.contaminant = purityReport.containmentPPM
+                propertiesTabBar?.editPurity?.virus = purityReport.virusPPM
+            }
+            
             
         } else { //Band-aid fix to save views
             
@@ -59,9 +71,46 @@ class EditReportViewController: UIViewController {
     }
 
     @IBAction func saveReportPressed(_ sender: Any) {
-        exitViewController()
-        //TODO update Report Object
-
+        let service = FirebaseService()
+        if report == nil { // creating a new report
+            if reportTypeControl.selectedSegmentIndex == 0 {
+                report = SourceReport()
+                service.table = FirebaseTable.sourceReports
+            } else  {
+                report = PurityReport()
+                service.table = FirebaseTable.purityReports
+            }
+            report?.userId = (AuthManager.shared.current()?.email)!
+            report?.reportNumber = service.getKey()
+            report?.location = (pin?.coordinate.latitude.description)! + "," + (pin?.coordinate.longitude.description)!
+            
+        } else {
+            if report is SourceReport {
+                service.table = FirebaseTable.sourceReports
+            } else {
+                service.table = FirebaseTable.purityReports
+            }
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E MMM dd HH:mm:ss z yyyy"
+        report?.dateTimeString = dateFormatter.string(from: Date())
+        report?.condition = conditionOptions[conditionControl.selectedSegmentIndex]
+        if let sourceReport = report as? SourceReport {
+            sourceReport.type = typeOptions[(propertiesTabBar?.editSource?.typeSelector.selectedSegmentIndex)!]
+            service.enterData(forIdentifier: sourceReport.reportNumber, data: sourceReport)
+        } else if let purityReport = report as? PurityReport {
+            purityReport.containmentPPM = Double((propertiesTabBar!.editPurity?.contaminantPPM.text)!)!
+            purityReport.virusPPM = Double((propertiesTabBar?.editPurity?.virusPPM.text)!)!
+            service.enterData(forIdentifier: purityReport.reportNumber, data: purityReport)
+        }
+        //exitViewController()
+        self.navigationController?.popViewController(animated: true)
+        let parent = self.navigationController?.topViewController
+        if let map = parent as? MapViewController {
+            let newPin = ReportLocation(name: (report?.reportNumber)!, lat: (pin?.coordinate.latitude)!, long: (pin?.coordinate.longitude)!, data: report)
+            map.mapView.removeAnnotation(pin!)
+            map.mapView.addAnnotation(newPin)
+        }
     }
     
     func exitViewController() {

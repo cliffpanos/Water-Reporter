@@ -921,6 +921,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="conditionControl" destination="BxF-eY-5pb" id="2ub-W1-akB"/>
                         <outlet property="navigationBar" destination="9nO-pX-2V4" id="CeF-QD-Ya9"/>
                         <outlet property="property1" destination="I2c-Ig-ByD" id="BWQ-jG-CB9"/>
                         <outlet property="reportTypeControl" destination="F09-FJ-Uya" id="hQh-en-x4j"/>

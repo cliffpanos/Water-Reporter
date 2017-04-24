@@ -52,10 +52,23 @@ class EditPropertiesViewController: UITabBarController {
 class EditSourceViewController: UIViewController {
     @IBOutlet weak var typeSelector: UISegmentedControl!
     
+    var selectedIndex : Int?
+    
+    override func viewDidLoad() {
+        typeSelector.selectedSegmentIndex = selectedIndex == nil ? 0 : selectedIndex!
+    }
+    
 }
 
 class EditPurityViewController: UIViewController {
     @IBOutlet weak var contaminantPPM: UITextField!
     @IBOutlet weak var virusPPM: UITextField!
     
+    var contaminant : Double?
+    var virus : Double?
+    
+    override func viewDidLoad() {
+        contaminantPPM.text = contaminant == nil ? "" : contaminant?.description
+        virusPPM.text = virus == nil ? "" : virus?.description
+    }
 }

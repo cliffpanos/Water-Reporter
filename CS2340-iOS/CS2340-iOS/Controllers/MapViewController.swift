@@ -33,8 +33,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         //TODO remove this
-        let hackGSU = ReportLocation(name: "HackGSU",lat: 33.7563920891773, long: -84.3890242522629, data: nil)
-        mapView.addAnnotation(hackGSU as MKAnnotation)
+        //let hackGSU = ReportLocation(name: "HackGSU",lat: 33.7563920891773, long: -84.3890242522629, data: nil)
+        //mapView.addAnnotation(hackGSU as MKAnnotation)
         
         let button = UIBarButtonItem(image: #imageLiteral(resourceName: "CurrentLocation"), style: .done, target: self, action: #selector(zoomToUserLocation))
         navigationItem.rightBarButtonItem = button
@@ -160,6 +160,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             (controller as! PinDetailViewController).report = report
         } else {
             controller = AppConstants.storyboard.instantiateViewController(withIdentifier: "editReportViewController")
+            (controller as! EditReportViewController).pin = pin
         }
         self.navigationController?.pushViewController(controller, animated: true)
     }
