@@ -105,7 +105,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func createMarker(report: Report) {
         
-        let location = (report.toDictionary())["location"] as! String
+        let location = report.location
         let locationComponents = location.components(separatedBy: ",")
         
         guard locationComponents.count > 1 else {

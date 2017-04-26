@@ -226,11 +226,111 @@
                         <outlet property="property2" destination="qz1-Gs-pHI" id="n4c-kk-9MM"/>
                         <outlet property="property3" destination="bXA-sk-kTn" id="e8E-4L-mOr"/>
                         <outlet property="waterReportTypeLabel" destination="VHu-1L-Byd" id="pfV-Fq-hze"/>
+                        <segue destination="r2D-fn-ili" kind="show" identifier="graph" id="VVM-SA-c7M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zw5-dY-Ve9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1204" y="-664"/>
+        </scene>
+        <!--Graph View Controller-->
+        <scene sceneID="mN1-oB-Ocp">
+            <objects>
+                <viewController id="r2D-fn-ili" customClass="GraphViewController" customModule="CS2340_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6s8-Ut-aZE"/>
+                        <viewControllerLayoutGuide type="bottom" id="y81-yb-LnH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aBd-aY-4rg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6W-UZ-cpn">
+                                <rect key="frame" x="16" y="72" width="39" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESL-qS-HMU">
+                                <rect key="frame" x="13" y="110" width="50" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="eBQ-JM-wxC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qwi-Ub-Cc2">
+                                <rect key="frame" x="143" y="106" width="163" height="29"/>
+                                <segments>
+                                    <segment title="Contaminant"/>
+                                    <segment title="Virus"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtS-nc-e6p" customClass="BorderedButton" customModule="CS2340_iOS" customModuleProvider="target">
+                                <rect key="frame" x="21" y="142" width="278" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="01f-a1-hGz"/>
+                                </constraints>
+                                <state key="normal" title="Load Historical Report"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="load:" destination="r2D-fn-ili" eventType="touchUpInside" id="8cf-T6-9WZ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bsX-yy-Goq" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="15" y="195" width="291" height="306"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omH-yI-DBf">
+                                <rect key="frame" x="209" y="68" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="qrU-K6-blG"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y81-yb-LnH" firstAttribute="top" secondItem="bsX-yy-Goq" secondAttribute="bottom" constant="18" id="4fG-P8-u06"/>
+                            <constraint firstItem="r6W-UZ-cpn" firstAttribute="centerY" secondItem="omH-yI-DBf" secondAttribute="centerY" id="BA5-k6-UWL"/>
+                            <constraint firstItem="qwi-Ub-Cc2" firstAttribute="trailing" secondItem="bsX-yy-Goq" secondAttribute="trailing" id="DPj-FE-WmU"/>
+                            <constraint firstItem="ESL-qS-HMU" firstAttribute="centerY" secondItem="qwi-Ub-Cc2" secondAttribute="centerY" id="F2N-YB-326"/>
+                            <constraint firstItem="r6W-UZ-cpn" firstAttribute="top" secondItem="6s8-Ut-aZE" secondAttribute="bottom" constant="8" symbolic="YES" id="FPo-M5-q2Z"/>
+                            <constraint firstItem="qwi-Ub-Cc2" firstAttribute="top" secondItem="omH-yI-DBf" secondAttribute="bottom" constant="8" symbolic="YES" id="QTE-tt-yYo"/>
+                            <constraint firstItem="r6W-UZ-cpn" firstAttribute="leading" secondItem="aBd-aY-4rg" secondAttribute="leadingMargin" id="Qqk-K6-vws"/>
+                            <constraint firstItem="omH-yI-DBf" firstAttribute="trailing" secondItem="qwi-Ub-Cc2" secondAttribute="trailing" id="UWz-og-MpV"/>
+                            <constraint firstItem="ESL-qS-HMU" firstAttribute="leading" secondItem="aBd-aY-4rg" secondAttribute="leadingMargin" constant="-3" id="bHV-Co-bCF"/>
+                            <constraint firstItem="QtS-nc-e6p" firstAttribute="centerX" secondItem="aBd-aY-4rg" secondAttribute="centerX" id="bzj-9v-raF"/>
+                            <constraint firstItem="QtS-nc-e6p" firstAttribute="top" secondItem="qwi-Ub-Cc2" secondAttribute="bottom" constant="8" symbolic="YES" id="hct-Rg-wZw"/>
+                            <constraint firstItem="qwi-Ub-Cc2" firstAttribute="leading" secondItem="ESL-qS-HMU" secondAttribute="trailing" constant="80" id="ifB-ZL-b7S"/>
+                            <constraint firstItem="bsX-yy-Goq" firstAttribute="leading" secondItem="aBd-aY-4rg" secondAttribute="leadingMargin" constant="-1" id="oNw-mk-IpG"/>
+                            <constraint firstItem="bsX-yy-Goq" firstAttribute="top" secondItem="QtS-nc-e6p" secondAttribute="bottom" constant="18" id="uEW-9P-cDc"/>
+                            <constraint firstItem="QtS-nc-e6p" firstAttribute="leading" secondItem="aBd-aY-4rg" secondAttribute="leadingMargin" constant="5" id="uwW-Ry-c9i"/>
+                            <constraint firstItem="QtS-nc-e6p" firstAttribute="centerX" secondItem="bsX-yy-Goq" secondAttribute="centerX" id="zJB-K0-EOl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chart" destination="bsX-yy-Goq" id="kzT-zg-MhY"/>
+                        <outlet property="type" destination="qwi-Ub-Cc2" id="53Q-aD-GsC"/>
+                        <outlet property="year" destination="omH-yI-DBf" id="wZd-gL-xd7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="imC-PM-AmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2075.625" y="-663.38028169014081"/>
         </scene>
         <!--Report Information-->
         <scene sceneID="8Cr-gy-3u0">

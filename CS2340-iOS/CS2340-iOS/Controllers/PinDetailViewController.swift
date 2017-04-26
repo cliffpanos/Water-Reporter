@@ -27,7 +27,9 @@ class PinDetailViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(presentEditReportController))
-
+        
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "Graph"), style: .done, target: self, action: #selector(graph))
+        navigationItem.rightBarButtonItem = button
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +65,17 @@ class PinDetailViewController: UIViewController {
             longLabel.text = "Longitude: \(locationComponents[1])"
         }
 
+    }
+    
+    func graph() {
+        performSegue(withIdentifier: "graph", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "graph" {
+            let vc = segue.destination as? GraphViewController
+            vc?.location = pin.coordinate
+        }
     }
     
     @IBAction func viewInMapPressed(_ sender: Any) {
