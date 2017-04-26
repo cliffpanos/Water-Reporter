@@ -10,6 +10,7 @@
 		9106B5221EAC654900861B42 /* EditReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9106B5211EAC654900861B42 /* EditReportViewController.swift */; };
 		91A768C61E99733100DAF749 /* Designables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A768C51E99733100DAF749 /* Designables.swift */; };
 		91A768C81E9A15F600DAF749 /* PinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A768C71E9A15F600DAF749 /* PinDetailViewController.swift */; };
+		91E2A1021EB0690B009C7F7F /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E2A1011EB0690B009C7F7F /* ForgotPasswordViewController.swift */; };
 		FD095C251EAE42CB006DFE5A /* EditPropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD095C241EAE42CB006DFE5A /* EditPropertiesViewController.swift */; };
 		FDD93E261E9960CD006C912A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E251E9960CD006C912A /* AppDelegate.swift */; };
 		FDD93E2B1E9960CD006C912A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDD93E291E9960CD006C912A /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		9106B5211EAC654900861B42 /* EditReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditReportViewController.swift; path = Controllers/EditReportViewController.swift; sourceTree = "<group>"; };
 		91A768C51E99733100DAF749 /* Designables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Designables.swift; sourceTree = "<group>"; };
 		91A768C71E9A15F600DAF749 /* PinDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinDetailViewController.swift; path = Controllers/PinDetailViewController.swift; sourceTree = "<group>"; };
+		91E2A1011EB0690B009C7F7F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Controllers/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		BD76673B7DBDD8F94D419224 /* Pods-CS2340-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS2340-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CS2340-iOS/Pods-CS2340-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		FD095C241EAE42CB006DFE5A /* EditPropertiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPropertiesViewController.swift; path = Controllers/EditPropertiesViewController.swift; sourceTree = "<group>"; };
 		FDD93E221E9960CD006C912A /* CS2340-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CS2340-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				FDD93E461E99689E006C912A /* LoginViewController.swift */,
 				FDD93E481E99746E006C912A /* RegistrationViewController.swift */,
 				FDD93E4A1E997C8B006C912A /* EditProfileViewController.swift */,
+				91E2A1011EB0690B009C7F7F /* ForgotPasswordViewController.swift */,
 				FDD93E4C1E998092006C912A /* HomePageViewController.swift */,
 				FDD93E4E1E998B90006C912A /* MapViewController.swift */,
 				91A768C51E99733100DAF749 /* Designables.swift */,
@@ -302,6 +305,7 @@
 				FDD93E3E1E9962AC006C912A /* AuthManager.swift in Sources */,
 				91A768C61E99733100DAF749 /* Designables.swift in Sources */,
 				FDD93E4F1E998B90006C912A /* MapViewController.swift in Sources */,
+				91E2A1021EB0690B009C7F7F /* ForgotPasswordViewController.swift in Sources */,
 				FD095C251EAE42CB006DFE5A /* EditPropertiesViewController.swift in Sources */,
 				9106B5221EAC654900861B42 /* EditReportViewController.swift in Sources */,
 				FDD93E4D1E998092006C912A /* HomePageViewController.swift in Sources */,
