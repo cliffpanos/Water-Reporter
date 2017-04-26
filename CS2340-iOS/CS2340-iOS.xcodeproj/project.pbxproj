@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59E1CA30D35226135EDFD5E2 /* Pods_CS2340_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DD97673E45D10BC875DA40 /* Pods_CS2340_iOS.framework */; };
 		9106B5221EAC654900861B42 /* EditReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9106B5211EAC654900861B42 /* EditReportViewController.swift */; };
 		91A768C61E99733100DAF749 /* Designables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A768C51E99733100DAF749 /* Designables.swift */; };
 		91A768C81E9A15F600DAF749 /* PinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A768C71E9A15F600DAF749 /* PinDetailViewController.swift */; };
 		91E2A1021EB0690B009C7F7F /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E2A1011EB0690B009C7F7F /* ForgotPasswordViewController.swift */; };
 		FD095C251EAE42CB006DFE5A /* EditPropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD095C241EAE42CB006DFE5A /* EditPropertiesViewController.swift */; };
+		FD1334951EAFE643006EDCDC /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1334941EAFE643006EDCDC /* GraphViewController.swift */; };
 		FDD93E261E9960CD006C912A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD93E251E9960CD006C912A /* AppDelegate.swift */; };
 		FDD93E2B1E9960CD006C912A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDD93E291E9960CD006C912A /* Main.storyboard */; };
 		FDD93E2D1E9960CD006C912A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD93E2C1E9960CD006C912A /* Assets.xcassets */; };
@@ -40,6 +42,7 @@
 		91E2A1011EB0690B009C7F7F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Controllers/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		BD76673B7DBDD8F94D419224 /* Pods-CS2340-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS2340-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CS2340-iOS/Pods-CS2340-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		FD095C241EAE42CB006DFE5A /* EditPropertiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPropertiesViewController.swift; path = Controllers/EditPropertiesViewController.swift; sourceTree = "<group>"; };
+		FD1334941EAFE643006EDCDC /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphViewController.swift; path = Controllers/GraphViewController.swift; sourceTree = "<group>"; };
 		FDD93E221E9960CD006C912A /* CS2340-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CS2340-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDD93E251E9960CD006C912A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDD93E2A1E9960CD006C912A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59E1CA30D35226135EDFD5E2 /* Pods_CS2340_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +160,7 @@
 				91A768C71E9A15F600DAF749 /* PinDetailViewController.swift */,
 				9106B5211EAC654900861B42 /* EditReportViewController.swift */,
 				FD095C241EAE42CB006DFE5A /* EditPropertiesViewController.swift */,
+				FD1334941EAFE643006EDCDC /* GraphViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				FD095C251EAE42CB006DFE5A /* EditPropertiesViewController.swift in Sources */,
 				9106B5221EAC654900861B42 /* EditReportViewController.swift in Sources */,
 				FDD93E4D1E998092006C912A /* HomePageViewController.swift in Sources */,
+				FD1334951EAFE643006EDCDC /* GraphViewController.swift in Sources */,
 				FDD93E421E9966AD006C912A /* Constants.swift in Sources */,
 				FDD93E4B1E997C8B006C912A /* EditProfileViewController.swift in Sources */,
 			);

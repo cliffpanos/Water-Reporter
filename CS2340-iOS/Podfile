@@ -15,4 +15,5 @@ target 'CS2340-iOS' do
   # pod 'FacebookLogin'
   pod 'Firebase/Database'
   pod 'Toast-Swift', '~> 2.0.0'
+  pod 'Charts'
 end

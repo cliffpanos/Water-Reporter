@@ -61,7 +61,6 @@ class FIRDataObject: NSObject {
         for child in snapshot.children.allObjects as? [FIRDataSnapshot] ?? [] {
             let key = String(child.key.characters.filter { !" \n\t\r".characters.contains($0) })
             if responds(to: Selector(key)) {
-                print(child.value)
                 setValue(child.value, forKey: key)
             }
         }
